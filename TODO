@@ -1,0 +1,20 @@
+-> Immediately / working on it
+    + Make the "sec-websocket-protocol" field optional
+    + Upon sending the close handshake, wait for the response for a specified
+      amount of time
+    + Client: check the value of "sec-websocket-location" returned by the server
+    + Create an attribute that contains the sub-protocol agreed upon with the
+      other side, so that the application may know which protocol it must talk
+
+-> Soon
+    + Implement proper error handling and exceptions
+    + Server: receive a list of accepted hosts and check the value of the
+              "host" field sent by the client against it
+    + Server: receive a blacklist/whitelist of origins and check the value of
+              the "origin" field sent by the client against it
+    + Server: receive a list of supported sub-protocols and check the
+              value of "sec-websocket-protocol" against it
+
+-> Someday / maybe
+    + Support TLS encryption (WSS - equivalent to HTTPS)
+    + Support cookies
