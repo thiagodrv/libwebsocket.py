@@ -1,4 +1,4 @@
--> Immediately / working on it
+-> Immediately
     + Make the "sec-websocket-protocol" field optional
     + Upon sending the close handshake, wait for the response for a specified
       amount of time

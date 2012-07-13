@@ -1,0 +1,31 @@
+#!/usr/bin/env python2
+
+import thread
+import sys
+import socket
+from libwebsocket import WebsocketServer
+
+def chat(id, ws):
+    while ws.readyState == 1:
+        msg = sys.stdin.readline()
+        ws.send(msg)
+
+def onopen(ws):
+    thread.start_new_thread(chat, ('', ws))
+
+def onmessage(ws, data):
+    print data
+
+def onerror(ws, conn):
+    print "error occurred. closing conection"
+    ws.readyState = 3
+    conn.close()
+    sys.exit(1)
+
+if __name__=='__main__':
+    port = 1234
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind(('', port))
+    s.listen(1)
+    conn, cli_addr = s.accept()
+    ws = WebsocketServer(conn, port, onopen, onmessage, onerror, None)

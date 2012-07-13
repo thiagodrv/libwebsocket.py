@@ -160,9 +160,9 @@ class WebsocketClient(WebsocketCommon):
         headers += key3
         conn.sendall(headers)
         response = conn_f.readline()
-        if len(response) < 7 or response.count(' ') < 2 or
-           response[len(response)-2] != '\r' or
-           response[len(response)-1] != '\n':
+        if (len(response) < 7 or response.count(' ') < 2 or
+            response[len(response)-2] != '\r' or
+            response[len(response)-1] != '\n'):
             #according to the specification, fail the connection!
             print 'Websocket connection failed: invalid response'
             sys.exit(1)
